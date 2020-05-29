@@ -12,7 +12,9 @@ class App extends Component {
       {id: 2, value: 0},
       {id: 3, value: 0},
       {id: 4, value: 0}
-    ]
+    ],
+    maxID: 5,
+    sum: 0
   };
 
   handleIncrement = counter => {
@@ -20,7 +22,12 @@ class App extends Component {
     const index = counters.indexOf(counter);
     counters[index] = {...counters[index]};
     counters[index].value++;
-    this.setState({counters});
+
+    const sum = this.state.sum;
+    this.setState({
+      counters: counters,
+      sum: sum + 1
+    });
   };
 
   handleDecrement = counter => {
@@ -28,35 +35,58 @@ class App extends Component {
     const index = counters.indexOf(counter);
     counters[index] = {...counters[index]};
     counters[index].value--;
-    this.setState({counters});
+
+    const sum = this.state.sum;
+    this.setState({
+      counters: counters,
+      sum: sum - 1
+    });
   };
 
   handleCancel = counter => {
     const counters = [...this.state.counters];
     const index = counters.indexOf(counter);
     counters[index] = {...counters[index]};
+    const value = counters[index].value
     counters[index].value = 0;
-    this.setState({counters});
+
+    const sum = this.state.sum;
+    this.setState({
+      counters: counters,
+      sum: sum - value
+    });
   };
 
   handleAdd = () => {
-    const counters = this.state.counters.map(c => {
-          c.value = 0;
-          return c;
-        });
-    this.setState({ counters });
+    const counters = [...this.state.counters];
+    const maxID = this.state.maxID;
+    const newCounter = {id: maxID, value: 0};
+    counters.push(newCounter);
+
+    console.log(maxID);
+    this.setState({
+      counters: counters,
+      maxID: maxID + 1
+    });
   };
 
   handleDelete = counterID => {
+    const counter = this.state.counters.filter(c => c.id === counterID);
+    const value = counter[0].value;
     const counters = this.state.counters.filter(c => c.id !== counterID);
-    this.setState({counters});
+
+    const sum = this.state.sum;
+    this.setState({
+      counters: counters,
+      sum: sum - value
+    });
   };
 
   render() {
     return (
       <div>
         <NavBar
-          totalCounters = {this.state.counters.filter(c => c.value > 0).length}
+          totalCounters = { this.state.sum }
         />
         <main className = "container">
           <Counters
