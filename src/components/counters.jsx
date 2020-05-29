@@ -8,31 +8,25 @@ class Counters extends Component {
       onIncrement,
       onDelete,
       onDecrement,
-      counters,
-      onRestart
+      onCancel,
+      counters
     } = this.props;
     return (
       <div>
         <button
           className="btn btn-success m-2"
-          onClick={onReset}
-          disabled={counters.length === 0 ? "disabled" : ""}
+          onClick={() => this.props.onAdd(this.props.counter)}
         >
-          <i className="fa fa-refresh" aria-hidden="true" />
+          <i className="fas fa-plus-circle" aria-hidden="true" />
         </button>
-        <button
-          className="btn btn-primary m-2"
-          onClick={onRestart}
-          disabled={counters.length !== 0 ? "disabled" : ""}
-        >
-          <i className="fa fa-recycle" aria-hidden="true" />
-        </button>
+
         {counters.map(counter => (
           <Counter
             key={counter.id}
             counter={counter}
             onIncrement={onIncrement}
             onDecrement={onDecrement}
+            onCancel={onCancel}
             onDelete={onDelete}
           />
         ))}
