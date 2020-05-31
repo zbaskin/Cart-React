@@ -15,27 +15,27 @@ class Counter extends Component {
               className="btn btn-secondary"
               onClick={() => this.props.onIncrement(this.props.counter)}
             >
-              <i className="fas fa-plus-circle" aria-hidden="true" />
+              <i className="fa fa-plus-circle" aria-hidden="true" />
             </button>
             <button
               className="btn btn-info m-2"
               onClick={() => this.props.onDecrement(this.props.counter)}
               disabled={this.props.counter.value === 0 ? "disabled" : ""}
             >
-              <i className="fas fa-minus-circle" aria-hidden="true" />
+              <i className="fa fa-minus-circle" aria-hidden="true" />
             </button>
             <button
               className="btn btn-info m-2"
               onClick={() => this.props.onCancel(this.props.counter)}
               disabled={this.props.counter.value === 0 ? "disabled" : ""}
             >
-              <i className="fas fa-sync-alt" aria-hidden="true" />
+              <i className="fa fa-refresh" aria-hidden="true" />
             </button>
             <button
               className="btn btn-danger"
               onClick={() => this.props.onDelete(this.props.counter.id)}
             >
-              <i className="fas fa-trash-alt" aria-hidden="true" />
+              <i className="fa fa-trash-o" aria-hidden="true" />
             </button>
           </div>
         </div>

@@ -16,7 +16,7 @@ class Counters extends Component {
           className="btn btn-success m-2"
           onClick={() => this.props.onAdd(this.props.counter)}
         >
-          <i className="fas fa-plus-circle" aria-hidden="true" />
+          <i className="fa fa-plus-circle" aria-hidden="true" />
         </button>
 
         {counters.map(counter => (
