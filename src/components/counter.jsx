@@ -5,27 +5,28 @@ class Counter extends Component {
     return (
       <div>
         <div className="row">
-          <div className="col-md-1">
+          <div className="col-md-3" />
+          <div className="col-md-2">
             <span style={{ fontSize: 24 }} className={this.getBadgeClasses()}>
               {this.props.counter.value}
             </span>
           </div>
           <div className="col-md-4">
             <button
-              className="btn btn-secondary"
+              className="btn btn-primary"
               onClick={() => this.props.onIncrement(this.props.counter)}
             >
               <i className="fa fa-plus-circle" aria-hidden="true" />
             </button>
             <button
-              className="btn btn-info m-2"
+              className="btn btn-secondary m-2"
               onClick={() => this.props.onDecrement(this.props.counter)}
               disabled={this.props.counter.value === 0 ? "disabled" : ""}
             >
               <i className="fa fa-minus-circle" aria-hidden="true" />
             </button>
             <button
-              className="btn btn-info m-2"
+              className="btn btn-info mr-2"
               onClick={() => this.props.onCancel(this.props.counter)}
               disabled={this.props.counter.value === 0 ? "disabled" : ""}
             >
@@ -38,6 +39,7 @@ class Counter extends Component {
               <i className="fa fa-trash-o" aria-hidden="true" />
             </button>
           </div>
+          <div className="col-md-3" />
         </div>
       </div>
     );
@@ -45,7 +47,7 @@ class Counter extends Component {
 
   getBadgeClasses = () => {
     let classes = "badge m-2 badge-";
-    classes += this.props.counter.value === 0 ? "warning" : "primary";
+    classes += this.props.counter.value === 0 ? "dark" : "warning";
     return classes;
   };
 }

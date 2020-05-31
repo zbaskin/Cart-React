@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 import NavBar from "./components/navbar";
@@ -87,16 +86,18 @@ class App extends Component {
       <div>
         <NavBar
           totalCounters = { this.state.sum }
+          onAdd = {this.handleAdd}
         />
         <main className = "container">
-          <Counters
-            counters = {this.state.counters}
-            onAdd = {this.handleAdd}
-            onIncrement = {this.handleIncrement}
-            onDecrement = {this.handleDecrement}
-            onCancel = {this.handleCancel}
-            onDelete = {this.handleDelete}
-          />
+          <div style={{ marginTop: 50 }}>
+            <Counters
+              counters = {this.state.counters}
+              onIncrement = {this.handleIncrement}
+              onDecrement = {this.handleDecrement}
+              onCancel = {this.handleCancel}
+              onDelete = {this.handleDelete}
+            />
+          </div>
         </main>
       </div>
     );

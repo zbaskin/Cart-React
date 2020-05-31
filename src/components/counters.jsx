@@ -12,13 +12,6 @@ class Counters extends Component {
     } = this.props;
     return (
       <div>
-        <button
-          className="btn btn-success m-2"
-          onClick={() => this.props.onAdd(this.props.counter)}
-        >
-          <i className="fa fa-plus-circle" aria-hidden="true" />
-        </button>
-
         {counters.map(counter => (
           <Counter
             key={counter.id}
