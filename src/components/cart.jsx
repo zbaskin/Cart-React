@@ -10,7 +10,8 @@ class Cart extends Component {
     return (
       <div>
         <p>Your collection:</p>
-        {this.props.counters.map((counter, id) => {
+
+        {this.props.counters.filter(c => c.value !== 0).map((counter, id) => {
           return (
             <Row key={id}>
               <Col md={16}>
