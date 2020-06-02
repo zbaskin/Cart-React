@@ -4,16 +4,21 @@ import './App.css';
 import NavBar from "./components/navbar";
 import Counters from "./components/counters";
 
+import { Modal, Button } from 'antd';
+
 class App extends Component {
   state = {
     counters: [
-      {id: 1, value: 0},
-      {id: 2, value: 0},
-      {id: 3, value: 0},
-      {id: 4, value: 0}
+      {id: 1, value: 0, name: "Action Comics #999"},
+      {id: 2, value: 0, name: "Amazing Spider-Man #15"},
+      {id: 3, value: 0, name: "The Mighty Thor #10"},
+      {id: 4, value: 0, name: "Immortal Hulk #3"}
     ],
     maxID: 5,
-    sum: 0
+    sum: 0,
+    visible: false,
+    confirmLoading: false,
+
   };
 
   handleIncrement = counter => {
@@ -57,16 +62,7 @@ class App extends Component {
   };
 
   handleAdd = () => {
-    const counters = [...this.state.counters];
-    const maxID = this.state.maxID;
-    const newCounter = {id: maxID, value: 0};
-    counters.push(newCounter);
-
-    console.log(maxID);
-    this.setState({
-      counters: counters,
-      maxID: maxID + 1
-    });
+    this.showModal();
   };
 
   handleDelete = counterID => {
@@ -81,12 +77,47 @@ class App extends Component {
     });
   };
 
+  handleCart = () => {
+
+  }
+
+  showModal = () => {
+    this.setState({
+      visible: true,
+    });
+  };
+
+  handleOk = () => {
+    const counters = [...this.state.counters];
+    const maxID = this.state.maxID;
+    const name = this.testInput.value;
+    const newCounter = {id: maxID, value: 0, name: name};
+    counters.push(newCounter);
+
+    this.setState({
+      counters: counters,
+      maxID: maxID + 1,
+      visible: false,
+      confirmLoading: false,
+    }, function() {
+      document.getElementById('nameInput').value = "";
+    });
+  }
+
+  handleModalCancel = () => {
+    document.getElementById('nameInput').value = "";
+    this.setState({
+      visible: false,
+    });
+  }
+
   render() {
     return (
       <div>
         <NavBar
           totalCounters = { this.state.sum }
           onAdd = {this.handleAdd}
+          onCart = {this.handleCart}
         />
         <main className = "container">
           <div style={{ marginTop: 50 }}>
@@ -99,6 +130,19 @@ class App extends Component {
             />
           </div>
         </main>
+        <Modal
+          align="middle"
+          title="Excelsius Comic Shop"
+          visible={this.state.visible}
+          confirmLoading={this.state.confirmLoading}
+          onOk={this.handleOk}
+          onCancel={this.handleModalCancel}
+        >
+          <p>Input the comic you would like to add to your collection.</p>
+          <input type='text' id="nameInput"
+            ref={(input) => { this.testInput = input; }}
+          ></input>
+        </Modal>
       </div>
     );
   }

@@ -5,8 +5,11 @@ class Counter extends Component {
     return (
       <div>
         <div className="row">
-          <div className="col-md-3" />
-          <div className="col-md-2">
+          <div className="col-md-4">
+            <span className="navbar-brand text-wrap">{this.props.counter.name}</span>
+          </div>
+          <div className="col-md-1">
+
             <span style={{ fontSize: 24 }} className={this.getBadgeClasses()}>
               {this.props.counter.value}
             </span>

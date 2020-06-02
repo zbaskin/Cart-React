@@ -4,7 +4,8 @@ class NavBar extends Component {
   render() {
     const {
       totalCounters,
-      onAdd
+      onAdd,
+      onCart
     } = this.props;
     return (
       <nav className="navbar navbar-light bg-light">
@@ -18,7 +19,13 @@ class NavBar extends Component {
             <i className="fa fa-plus-square" aria-hidden="true" />
           </button>
 
-          <i className="fa fa-shopping-cart fa-lg m-2" aria-hidden="true" />
+          <button
+            className="btn btn-dark m-2"
+            onClick={() => this.props.onCart()}
+          >
+            <i className="fa fa-shopping-cart fa-lg" aria-hidden="true" />
+          </button>
+
           <span className="badge badge-pill badge-info m-2" style={{ width: 50 }}>
             {totalCounters}
           </span>
