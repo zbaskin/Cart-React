@@ -158,6 +158,7 @@ class App extends Component {
         >
           <Cart
             counters = {this.state.counters}
+            totalSum = {this.state.sum}
           />
         </Modal>
       </div>

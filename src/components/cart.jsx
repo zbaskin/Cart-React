@@ -4,7 +4,8 @@ import { Row, Col } from 'antd';
 class Cart extends Component {
   render() {
     const {
-      counters
+      counters,
+      totalSum
     } = this.props;
     return (
       <div>
@@ -21,6 +22,10 @@ class Cart extends Component {
             </Row>
           )
         })}
+        <Row>
+          <Col md={16} />
+          <Col md={8}><strong>{this.props.totalSum} Total Items</strong></Col>
+        </Row>
       </div>
     );
   }
