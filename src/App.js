@@ -3,8 +3,9 @@ import './App.css';
 
 import NavBar from "./components/navbar";
 import Counters from "./components/counters";
+import Cart from "./components/cart";
 
-import { Modal, Button } from 'antd';
+import { Modal, Button, Row, Col } from 'antd';
 
 class App extends Component {
   state = {
@@ -17,8 +18,7 @@ class App extends Component {
     maxID: 5,
     sum: 0,
     visible: false,
-    confirmLoading: false,
-
+    visibleCart: false,
   };
 
   handleIncrement = counter => {
@@ -78,8 +78,10 @@ class App extends Component {
   };
 
   handleCart = () => {
-
-  }
+    this.setState({
+      visibleCart: true,
+    });
+  };
 
   showModal = () => {
     this.setState({
@@ -98,7 +100,6 @@ class App extends Component {
       counters: counters,
       maxID: maxID + 1,
       visible: false,
-      confirmLoading: false,
     }, function() {
       document.getElementById('nameInput').value = "";
     });
@@ -109,7 +110,13 @@ class App extends Component {
     this.setState({
       visible: false,
     });
-  }
+  };
+
+  handleCartCancel = () => {
+    this.setState({
+      visibleCart: false,
+    });
+  };
 
   render() {
     return (
@@ -134,7 +141,6 @@ class App extends Component {
           align="middle"
           title="Excelsius Comic Shop"
           visible={this.state.visible}
-          confirmLoading={this.state.confirmLoading}
           onOk={this.handleOk}
           onCancel={this.handleModalCancel}
         >
@@ -142,6 +148,17 @@ class App extends Component {
           <input type='text' id="nameInput"
             ref={(input) => { this.testInput = input; }}
           ></input>
+        </Modal>
+        <Modal
+          align="middle"
+          title="Excelsius Comic Shop"
+          visible={this.state.visibleCart}
+          footer={null}
+          onCancel={this.handleCartCancel}
+        >
+          <Cart
+            counters = {this.state.counters}
+          />
         </Modal>
       </div>
     );
